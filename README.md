@@ -29,21 +29,20 @@ input: `./decision-list-train sentiment-train.txt  > sentiment-decision-list.txt
 output: The decision list will be written to the file sentiment-decision-list.txt
 
 ### Algorithm
-Algorithm: \
- &emsp;&emsp;- Grab all of the command line variables and assign them to variables \
- &emsp;&emsp;- Process the training data creating a list of unigram and bigrams \
-    &emsp;&emsp;&emsp;&emsp;- Go through the data line by line or in this case review by review \
-    &emsp;&emsp;&emsp;&emsp;- If we are making the list of unigrams do the above mentioned not processing on each line \
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;- The list values will be of the format [pos_count, neg_count, log-likelihood] \
-    &emsp;&emsp;&emsp;&emsp;- Check if the review is a positive or negative review \
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;- If that feature is already in the list \
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;- For that feature either iterate the pos_count or neg_count up by on \
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;-If that feature isn't in the list \
-            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;- Create a new value whit the correct base counts. Start everything at 1 to avoid the issue of dividing by 0 later on. \
-    &emsp;&emsp;&emsp;&emsp;- Return the bi/unigram list \
-&emsp;&emsp;- Calculate the log-likelihood of feature in both the bigram and unigram list and then combine the two lists \
-    &emsp;&emsp;&emsp;&emsp;- Sort this combined list by the log-likelihood and this will then be the decision list \
-    &emsp;&emsp;&emsp;&emsp;- Return the decision list
+- Grab all of the command line variables and assign them to variables 
+    - Process the training data creating a list of unigram and bigrams 
+        - Go through the data line by line or in this case review by review 
+    - If we are making the list of unigrams do the above mentioned not processing on each line 
+        - The list values will be of the format [pos_count, neg_count, log-likelihood] 
+    - Check if the review is a positive or negative review
+        - If that feature is already in the list
+            - For that feature either iterate the pos_count or neg_count up by on
+        -If that feature isn't in the list
+            - Create a new value whit the correct base counts. Start everything at 1 to avoid the issue of dividing by 0 later on.
+    - Return the bi/unigram list 
+- Calculate the log-likelihood of feature in both the bigram and unigram list and then combine the two lists
+    - Sort this combined list by the log-likelihood and this will then be the decision list
+    - Return the decision list
 
 # decision-list-test.py
 
@@ -59,13 +58,12 @@ input:  `./decision-list-test  sentiment-decision-list.txt sentiment-test.txt  >
 output: The answers will be outputted to sentiment-system-answers.txt
 
 ### Algorithm:
-Algorithm:\
-    &emsp;&emsp;- Grab all of the command line variables and assign them to variables \
-    &emsp;&emsp;- Read in the decision list from the inputted file \
-    &emsp;&emsp;- Calculate the most common sense \
-    &emsp;&emsp;- Go through each review in the test data and classify it with the passed in decision list \
-       &emsp;&emsp;&emsp;&emsp; - Write the answers to a list \
-    &emsp;&emsp;- Write the list to the specified file
+- Grab all of the command line variables and assign them to variables 
+- Read in the decision list from the inputted file 
+- Calculate the most common sense 
+- Go through each review in the test data and classify it with the passed in decision list 
+    - Write the answers to a list 
+- Write the list to the specified file
     
 # decision-list-eval.py
 
@@ -87,8 +85,7 @@ True Negatives: 91(45.5) \
 False Negatives: 88(44.0) \
 
 ### Algorithm:
-Algorithm: \
-    &emsp;&emsp;- Grab all of the command line variables and assign them to variables \
-    &emsp;&emsp;- Read in the gold sense file into a list \
-    &emsp;&emsp;- Read the answer sense file into a list \
-    &emsp;&emsp;- Compare the two lists and calculate the confusion matrix
+- Grab all of the command line variables and assign them to variables 
+- Read in the gold sense file into a list 
+- Read the answer sense file into a list 
+- Compare the two lists and calculate the confusion matrix
